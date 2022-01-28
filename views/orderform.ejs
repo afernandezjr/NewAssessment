@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div style="padding: 15%; padding-top: 2% !important; background-color: rgb(219, 219, 219);">
+   
+        <form style=" background-color: #eee; padding:5%; border-radius:5px;" method="POST" action="/insertapplicationform">
+            <div class="row">
+                <div class="col">
+                    <label for="fname">Firstname</label>
+                    <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter first name" name="fname" value="<%= data[0].fname %>" disabled>
+                </div>
+                <div class="col">
+                    <label for="lname">Lastname</label>
+                    <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter lastname" name="lname" value="<%= data[0].lname %>" disabled>
+                </div>
+                <div class="col">
+                    <label for="mname">Middle Name:</label>
+                    <input type="text" class="form-control" id="mname" aria-describedby="emailHelp" placeholder="Enter lastname" name="mname"  required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="paddress">Present Address</label>
+                <input type="text" class="form-control" id="paddress" aria-describedby="emailHelp" placeholder="Present address" name="paddress" required>
+            </div>
+    
+            <div class="form-group">
+              <label for="Contact number">Contact Number</label>
+              <input type="number" class="form-control" id="Contact number" placeholder="Enter contact number" name="contactno" value="<%= data[0].contactno %>" disabled>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="fooditem">Order</label>
+                    <input type="text" class="form-control" id="fooditem" aria-describedby="emailHelp" placeholder="Binagoongan" name="fooditem" required>
+                </div>
+                <div class="col">
+                    <label for="quantity">Order Quantity</label>
+                    <input type="number" class="form-control" id="Order Quantity" placeholder="1" required>
+                </div>
+
+                <div class="col">
+                    <label for="payments">Mode Of Payment</label>
+                    <input type="txt" class="form-control" id="height" aria-describedby="emailHelp"  name="payments" required>
+                </div>
+
+                <div class="col">
+                    <label for="total">Total</label>
+                    <input type="number" class="form-control" id="height" aria-describedby="emailHelp"  name="total" required>
+                </div>
+                
+            <input type="hidden" class="form-control" value=<%= data[0].id %> aria-describedby="emailHelp"  name="userid"  >
+                    
+            <button type="submit" class="btn btn-primary w-100" center style="margin-top: 3%;">Send Application</button>
+          </form>
+
+    </div> -->
+    
+    <label>Date:</label>
+	<input type="date" name="date"><br>
+	<label>Mod of payment:</label>
+	<select name="mop">
+		<option value="gcash">GCASH</option>
+		<option value="cod">COD</option>
+	</select>
+	<br>
+	<br>
+	<form>
+		<table border="1px">
+			<thead>
+				<th>Product Name</th>
+				<th>Product Price</th>
+				<th>Product Quantity</th>
+			</thead>
+			<tbody>
+				<% for(var i=0; i< products.length; i++){ %>
+					<tr id="recordno<%= products[i].id %>">
+						<td><%= products[i].pname %></td>
+						<td><%= products[i].pprice %></td>
+						<td>
+							<input type="number" id="<%= products[i].id %>" name="userQty">
+							<input type="hidden" id="totalvalfor<%= products[i].id %>" value=0 name="totalvalall">
+							<input type="hidden" value="<%= products[i].id %>" name="ids">
+						</td>
+					</tr>
+				<% }%>
+					<tr>
+						<td>Total: </td>
+						<td></td>
+						<td id="totalvalalldata">0</td>
+					</tr>
+			</tbody>
+		</table>
+		<br>
+		<input type="submit" value="Checkout">
+	</form>
+
+
+    <script type="text/javascript">
+        $("form").on("submit",(e)=>{
+            e.preventDefault();
+            const data = $("form").serializeArray();
+            var date = $("input[name=date]").val();
+            var mop =  $("select[name=mop]").val();
+            if( date=="" || mop == ""){
+                alert("empty date or mode of payment")
+                return;
+            }
+            var datatosend = {
+                selected: [],
+                others:{
+                    date_ordered:date,
+                    mode:mop
+                }
+            }
+            for(var i = 0; i<data.length;i+=3){
+                if (data[i].name=="userQty" && data[i].value==0) continue;
+                datatosend.selected.push({id:data[i+2].value,quantity:data[i].value})
+            }
+            $.ajax({
+                type:"POST",
+                url:"/addorder",
+                dataType:"json",
+                data: {data:JSON.stringify(datatosend)},
+                success:()=>{
+                    alert("successfully added");
+                    window.location.href = "/guestdashboard"
+                }
+            });
+            console.log(datatosend)
+        });
+        $("input[type=number]").keyup((e)=>{
+            const product_id = e.target.id;
+            let product_value_entered = e.target.value;
+            var currenRow = $("#recordno"+product_id).find("td");
+            const pro_name = currenRow[0].innerText;
+            const pro_price = parseInt(currenRow[1].innerText);
+            let overalltotal =0;
+            const alltotals = $("input[name=totalvalall]");
+            $("#totalvalfor"+product_id).val(pro_price*product_value_entered);
+            for(var i=0;i<alltotals.length;i++){
+                overalltotal+=parseInt(alltotals[i].defaultValue);
+            }
+            $("#totalvalalldata").text(overalltotal)
+        });
+    </script>
+
+
+
+</body>
+</html>
