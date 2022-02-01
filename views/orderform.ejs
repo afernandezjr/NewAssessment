@@ -73,17 +73,24 @@
 
     </div> -->
     
-    <label>Date:</label>
-	<input type="date" name="date"><br>
-	<label>Mod of payment:</label>
-	<select name="mop">
-		<option value="gcash">GCASH</option>
-		<option value="cod">COD</option>
-	</select>
-	<br>
-	<br>
+    
+    
+    <div class="container text-center">
+
+        <h1>Place Order</h1>
+        
+        <label style="margin-top: 3%;">Date:</label>
+        <input type="date" name="date"><br>
+        <label>Mod of payment:</label>
+        <select name="mop">
+            <option value="gcash">GCASH</option>
+            <option value="cod">COD</option>
+        </select>
+        <br>
+        <br>
+
 	<form>
-		<table border="1px">
+		<table class="text-center">
 			<thead>
 				<th>Product Name</th>
 				<th>Product Price</th>
@@ -111,7 +118,7 @@
 		<br>
 		<input type="submit" value="Checkout">
 	</form>
-
+    </div>
 
     <script type="text/javascript">
         $("form").on("submit",(e)=>{

@@ -27,20 +27,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item ">
                 <a class="nav-link" href="/logout">Sign Out</a>
-            </li>
-        
-            </ul>
         </div>
 </nav>
 
    <div style="padding: 10%; padding-top: 5em !important;">
-    <h1><%= data[0].fname %> </h1>
-    <table border="1px" >
+    <h1 class="text-center"> Hello, Admin!</h1>
+    <!-- <%= data[0].fname %> -->
+    <table border="1px">
         <thead>
             <th>ID</th>
             <th>Order from</th>
@@ -49,6 +44,7 @@
             <th>Order Total</th>
             <th>View Order</th>
             <th>Approve</th>
+            <th>Decline</th>
         </thead>
         <tbody>
             <% for(var i=0; i < data.length; i++) { %>
@@ -57,10 +53,13 @@
                     <td><%= data[i].fname  %></td>
                     <td><%= data[i].date  %></td>
                     <td><%= data[i].status  %></td>
-                    <td><%= data[i].Total  %></td>
+                    <td><%= data[i].Total  %></td> 
                     <td><a href="/vieworder/<%= data[i].transactionid %>" target="_blank">View order</a></td>
                     <td>
                         <button type="button" class="btn btn-success" onclick="approve(<%=  JSON.stringify(data[i].transactionid) %>)" >Deliver</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger " onclick="decline(<%=  JSON.stringify(data[i].transactionid) %>)" >Decline</button>
                     </td>
                 </tr>
                 <% } %>
@@ -77,8 +76,6 @@
     $("table").DataTable();
 
     function approve(data){
-
-
 
         $.ajax({
             type: "POST",

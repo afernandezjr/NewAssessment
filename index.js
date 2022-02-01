@@ -39,6 +39,10 @@ app.get("/contactinfo",(req,res)=>{
     res.render("contactinfo");
 });  
 
+app.get("/techused",(req,res)=>{
+    res.render("techused");
+});  
+
 app.all("/signin",(req,res)=>{
 
     if(req.method=="POST"){
@@ -77,6 +81,7 @@ app.get("/admindashboard",(req,res)=>{
         INNER JOIN users as us ON tf.uid = us.id
         INNER JOIN products as pr ON tf.pid = pr.id
         GROUP BY tf.transactionid
+        ORDER BY tf.date ASC
         `, (err, rows) => {
             if (!err) {
                 console.log(rows);
@@ -223,7 +228,7 @@ app.get("/orderform",(req,res)=>{
 
     app.post("/declineapplication",(req,res)=>{
         const params=req.body;
-        db.query("UPDATE applicationform SET status = 'declined' WHERE id = "+params.upid,(err)=>{
+        db.query(`UPDATE transaction SET status = 'declined' WHERE transactionid = '${params.upid}'`,(err)=>{
             if(err) throw err
             res.send(true);
         })

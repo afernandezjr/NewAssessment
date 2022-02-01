@@ -97,7 +97,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `fname`, `lname`, `contactno`, `email`, `role`) VALUES
-(1, 'admin', 'admin', 'angelo', 'fernandez', 2147483647, 'jcc@ss.cc', 'admin'),
+(1, 'admin', 'admin', 'angelo', 'fernandez', 2147483647, 'admin@admin', 'admin'),
 (3, 'admin2', 'admin2', 'Joseph1', 'Joseph1', 92615, 'sdsd@ss.cc', 'admin'),
 (4, 'test2', 'test2', 'Angelo Al', 'Fernandez', 2147483647, 'test123@gmail.com', 'guest'),
 (21, 'chrissasakalam', 'chrissa', 'Chrissa Marie', 'Agujar', 1231243123, 'chrissa@gmail.com', 'guest'),

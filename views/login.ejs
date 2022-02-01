@@ -24,12 +24,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="/contactinfo">Contact Information</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/techused">Tech Used</a>
+              </li>
               <li class="nav-item dropdown">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/signin">Sign in<span class="sr-only">(current)</span></a>
+                    <a class="nav-link active" href="/signin">Sign-in<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/signup">Sign up</a>
+                    <a class="nav-link" href="/signup">Sign-up</a>
                 </li>
             </ul>
           </div>
@@ -38,8 +41,14 @@
     
     <div style="width: 100%; padding: 15%; padding-top:5% !important; ">
 
+      <% if(error) {%>
+        <div class="alert alert-danger" role="alert">
+          Incorrect Credentials
+        </div>
+      <% } %>
+
         <form style=" background-color: #eee; padding:5%; border-radius:5px;" method="POST">
-            <div style="width: 100%;justify-content: center; align-items: center; text-align: center;"><h1>Login </h1></div>
+            <div style="width: 100%;justify-content: center; align-items: center; text-align: center;"><h1>Login</h1></div>
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" name="username" required>
