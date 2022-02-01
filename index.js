@@ -234,7 +234,6 @@ app.get("/orderform",(req,res)=>{
         })
     });
 
-
     app.post("/addorder",(req,res)=>{
   
         const params =JSON.parse(req.body.data);
@@ -250,6 +249,5 @@ app.get("/orderform",(req,res)=>{
         res.send(true)
             
     });
-
 
 app.listen(process.env.PORT||3000);
