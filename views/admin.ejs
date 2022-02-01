@@ -31,7 +31,7 @@
                 <a class="nav-link" href="/logout">Sign Out</a>
         </div>
 </nav>
-
+ 
    <div style="padding: 10%; padding-top: 5em !important;">
     <h1 class="text-center"> Hello, Admin!</h1>
     <!-- <%= data[0].fname %> -->
@@ -42,6 +42,7 @@
             <th>Order Date</th>
             <th>Order Status</th>
             <th>Order Total</th>
+            <th>Mode of Payment</th>
             <th>View Order</th>
             <th>Approve</th>
             <th>Decline</th>
@@ -53,7 +54,8 @@
                     <td><%= data[i].fname  %></td>
                     <td><%= data[i].date  %></td>
                     <td><%= data[i].status  %></td>
-                    <td><%= data[i].Total  %></td> 
+                    <td><%= data[i].Total  %></td>
+                    <td><%= data[i].mop  %></td>
                     <td><a href="/vieworder/<%= data[i].transactionid %>" target="_blank">View order</a></td>
                     <td>
                         <button type="button" class="btn btn-success" onclick="approve(<%=  JSON.stringify(data[i].transactionid) %>)" >Deliver</button>
